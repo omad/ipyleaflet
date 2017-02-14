@@ -95,6 +95,16 @@ var LeafletTileLayerView = LeafletRasterLayerView.extend({
     },
 });
 
+var LeafletTileWMSLayerView = LeafletTileLayerView.extend({
+
+    create_obj: function () {
+        this.obj = L.tileLayer.wms(
+            this.model.get('baseUrl'),
+            this.get_options()
+        );
+    },
+});
+
 
 var LeafletImageOverlayView = LeafletRasterLayerView.extend({
 
@@ -540,6 +550,27 @@ var LeafletTileLayerModel = LeafletRasterLayerModel.extend({
         detect_retina : false
     })
 });
+var LeafletTileWMSLayerModel = LeafletRasterLayerModel.extend({
+    defaults: _.extend({}, LeafletRasterLayerModel.prototype.defaults, {
+        _view_name : 'LeafletTileWMSLayerView',
+        _model_name : 'LeafletTileWMSLayerModel',
+
+        bottom : true,
+        baseUrl : '',
+        layers : '',
+        styles : '',
+        format : 'image/jpeg',
+        transparent : false,
+        version : '1.1.1',
+        crs : null,
+
+        min_zoom : 0,
+        max_zoom : 18,
+        tile_size : 256,
+        opacity : 1.0,
+        detect_retina : false
+    })
+});
 
 
 var LeafletImageOverlayModel = LeafletRasterLayerModel.extend({
@@ -775,6 +806,7 @@ module.exports = {
     LeafletPopupView : LeafletPopupView,
     LeafletRasterLayerView : LeafletRasterLayerView,
     LeafletTileLayerView : LeafletTileLayerView,
+    LeafletTileWMSLayerView : LeafletTileWMSLayerView,
     LeafletImageOverlayView : LeafletImageOverlayView,
     LeafletVectorLayerView : LeafletVectorLayerView,
     LeafletPathView : LeafletPathView,
@@ -799,6 +831,7 @@ module.exports = {
     LeafletPopupModel : LeafletPopupModel,
     LeafletRasterLayerModel : LeafletRasterLayerModel,
     LeafletTileLayerModel : LeafletTileLayerModel,
+    LeafletTileWMSLayerModel : LeafletTileWMSLayerModel,
     LeafletImageOverlayModel : LeafletImageOverlayModel,
     LeafletVectorLayerModel : LeafletVectorLayerModel,
     LeafletPathModel : LeafletPathModel,

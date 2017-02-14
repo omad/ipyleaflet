@@ -114,6 +114,24 @@ class TileLayer(RasterLayer):
     opacity = Float(1.0).tag(sync=True, o=True)
     detect_retina = Bool(False).tag(sync=True, o=True)
 
+class TileWMSLayer(RasterLayer):
+    _view_name = Unicode('LeafletTileWMSLayerView').tag(sync=True)
+    _model_name = Unicode('LeafletTileWMSLayerModel').tag(sync=True)
+
+    bottom = Bool(True).tag(sync=True)
+    baseUrl = Unicode('').tag(sync=True)
+    layers = Unicode('').tag(sync=True, o=True)
+    styles = Unicode('').tag(sync=True, o=True)
+    format = Unicode('image/jpeg').tag(sync=True, o=True)
+    transparent = Bool(False).tag(sync=True, o=True)
+    version = Unicode('1.1.1').tag(sync=True, o=True)
+    min_zoom = Int(0).tag(sync=True, o=True)
+    max_zoom = Int(18).tag(sync=True, o=True)
+    tile_size = Int(256).tag(sync=True, o=True)
+    attribution = Unicode('Map data (c) <a href="https://openstreetmap.org">OpenStreetMap</a> contributors').tag(sync=True, o=True)
+    opacity = Float(1.0).tag(sync=True, o=True)
+    detect_retina = Bool(False).tag(sync=True, o=True)
+
 
 class ImageOverlay(RasterLayer):
     _view_name = Unicode('LeafletImageOverlayView').tag(sync=True)
